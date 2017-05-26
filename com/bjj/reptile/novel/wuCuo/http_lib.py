@@ -46,11 +46,19 @@ def getSingleChapterContent(url):
     print result
     pattern = re.compile('<div id="content">(.*?)</div>', re.S)
     items = re.findall(pattern, result)
-    return items[0].replace("<br />", "")\
+    s =  items[0].replace("<br />", "")\
         .replace("&nbsp;", "")\
-        .replace("*", "")\
-        .replace("PS：朋友们，新书正式上传喽！新的征程，愿与各位并肩同行。点击、收藏、推荐，你的每一点支持，都是我前进的动力！.手机用户请到m.qidian.com阅读。","")\
-        .replace("PS：亲们，看完书别忘了收藏啊，另外顺手扔下几张推荐票，支持一下新书，支持一下昊远，好人一生平安！.手机用户请到m.qidian.com阅读。","")
+        .replace("*", "")
+    s = s.lower()
+
+    s1 = s[:20]
+    s2 = s[20:]
+    print s
+    print s1 + s2
+    if s2.find("ps:"):
+        return s1 + s2[:s2.index("ps:")]
+    else:
+        return s
 
 
 def isPageError(index, title, url):
@@ -63,10 +71,10 @@ def isPageError(index, title, url):
         items = re.findall(pattern, result)
         content = items[0].replace("<br />", "") \
             .replace("&nbsp;", "") \
-            .replace("*", "") \
-            .replace("PS：朋友们，新书正式上传喽！新的征程，愿与各位并肩同行。点击、收藏、推荐，你的每一点支持，都是我前进的动力！.手机用户请到m.qidian.com阅读。","")\
-            .replace("PS：亲们，看完书别忘了收藏啊，另外顺手扔下几张推荐票，支持一下新书，支持一下昊远，好人一生平安！.手机用户请到m.qidian.com阅读。","")
-
+            .replace("*", "")
+        content = content.lower()
+        if content.find("ps:"):
+            content =  content[:content.index("ps:")]
 
         f.write(title + "\n")
         f.write(content + "\n")
