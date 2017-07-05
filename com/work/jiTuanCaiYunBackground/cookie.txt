@@ -1,0 +1,9 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.jituancaiyun.net	TRUE	/	FALSE	1499256708	_scn	a86a2365Sd063c96eS15d115ef5c0Sc7fc
+.jituancaiyun.net	TRUE	/	FALSE	1499256622	timeStamp	1499235022274
+.jituancaiyun.net	TRUE	/	FALSE	1499256622	token	5ca26e8b6743b42d7c32ab6e3f544d3b
+.jituancaiyun.net	TRUE	/	FALSE		uiapp	%7B%22orgId%22%3A85361%2C%22orgName%22%3A%22%E5%BC%80%E6%94%BE%E6%B3%A8%E5%86%8C%E4%BC%81%E4%B8%9A001%22%2C%22name%22%3A%22%E6%B5%8B%E8%AF%95%E5%9B%9B%22%2C%22mobile%22%3A%2215805710004%22%2C%22superAdmin%22%3A0%2C%22subOrg%22%3Afalse%2C%22teamOrg%22%3Atrue%2C%22uid%22%3A%22101010011894320%22%7D
+.jituancaiyun.net	TRUE	/	FALSE	1499256622	userId	101010011894320
