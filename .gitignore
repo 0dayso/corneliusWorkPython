@@ -7,4 +7,4 @@ target/*
 .project
 .DS_Store
 %USERPROFILE%/*
-*/jtcyBackground/*
+/jtcyBackground/
