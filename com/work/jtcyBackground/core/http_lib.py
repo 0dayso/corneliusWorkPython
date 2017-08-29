@@ -66,33 +66,54 @@ def http(args):
     """
 
     try:
-        host = config_file.SERVER_HOST
-        port = config_file.SERVER_PORT
+        if config_file.IS_ON_LINE:
+            host = config_file.SERVER_HOST_ON_LINE
+            port = config_file.SERVER_PORT_ON_LINE
+        else:
+            host = config_file.SERVER_HOST
+            port = config_file.SERVER_PORT
 
         # URL
         url = args['url']
-        if "http://admin.jituancaiyun.net/".find(url) != -1:
-            if url[0] != '/':
-                url = '/' + url
+        if config_file.IS_ON_LINE:
+            if "https://admin.jituancaiyun.com/".find(url) != -1:
+                if url[0] != '/':
+                    url = '/' + url
+        else:
+            if "http://admin.jituancaiyun.net/".find(url) != -1:
+                if url[0] != '/':
+                    url = '/' + url
         # headers
         headers = {}
         if args.has_key('headers'):
             headers = args['headers']
             headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
-            headers['Host'] = 'admin.jituancaiyun.net'
+            if config_file.IS_ON_LINE:
+                headers['Host'] = 'admin.jituancaiyun.com'
+            else:
+                headers['Host'] = 'admin.jituancaiyun.net'
             headers['Accept-Encoding'] = 'gzip, deflate, sdch'
             headers['Accept-Language'] = 'zh-CN,zh;q=0.8,ja;q=0.6'
             headers['Content-Type'] = 'application/json;charset=UTF-8'
             headers['Cookie'] =  dealCookie()
-            headers['Referer'] = 'http://admin.jituancaiyun.net/'
+            if config_file.IS_ON_LINE:
+                headers['Referer'] = 'https://admin.jituancaiyun.com/'
+            else:
+                headers['Referer'] = 'http://admin.jituancaiyun.net/'
         else:
             headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
-            headers['Host'] = 'admin.jituancaiyun.net'
+            if config_file.IS_ON_LINE:
+                headers['Host'] = 'admin.jituancaiyun.com'
+            else:
+                headers['Host'] = 'admin.jituancaiyun.net'
             headers['Accept-Encoding'] = 'gzip, deflate, sdch'
             headers['Accept-Language'] = 'zh-CN,zh;q=0.8,ja;q=0.6'
             headers['Content-Type'] = 'application/json;charset=UTF-8'
             headers['Cookie'] = dealCookie()
-            headers['Referer'] = 'http://admin.jituancaiyun.net/'
+            if config_file.IS_ON_LINE:
+                headers['Referer'] = 'https://admin.jituancaiyun.com/'
+            else:
+                headers['Referer'] = 'http://admin.jituancaiyun.net/'
 
 
         # method 先取method的值，如果为空，则根据data进行判断，有数据就为POST
@@ -113,9 +134,9 @@ def http(args):
                 jBody = utils.jsonLoadsUTF8(body)
             except:
                 pass
-        if not jBody['success'] and jBody['msg'] == '登录超时,请退出重新登录':
-            login.login()
-            http(args)
+        # if not jBody['success'] and jBody['msg'] == '登录超时,请退出重新登录':
+        #     login.login()
+        #     http(args)
 
         resp = HttpResp()
         resp.time = endTime - startTime

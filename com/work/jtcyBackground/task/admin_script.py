@@ -46,4 +46,4 @@ def deleteAdmin(role):
 
 
 if __name__ == '__main__':
-    deleteAdmin(3)
+    deleteAdmin(0)

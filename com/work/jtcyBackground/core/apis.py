@@ -4,19 +4,81 @@ import time
 import sys
 sys.path.append('..')
 from core import http_lib
+from basic import config_file
 
 
-def getDepartments(parenId):
+def getDepartments(parentId):
     """
     获取部门下的部门列表
-    :param parenId:父部门ID
+    :param parentId:父部门ID
     :return:
     """
     timestamp = str(int(time.time() * 1000))
     args = {
-        'url': "http://admin.jituancaiyun.net/entadmin/contact/dept?parentId=%s&_=%s" % (parenId, timestamp)
+        'url': "http://admin.jituancaiyun.net/entadmin/contact/dept?parentId=%s&_=%s" % (parentId, timestamp)
     }
     return http_lib.http(args)
+
+def getAllDepartmentsId(parentId, li):
+    """
+    获取parentId部门下的所有部门及其所有子部门的部门id
+    :param parentId:
+    :return:[1, 5, 6, 2, 7, 8, 10, 12, 11, 13, 9, 3, 4]
+    """
+    timestamp = str(int(time.time() * 1000))
+    args = {
+        'url': "http://admin.jituancaiyun.net/entadmin/contact/dept?parentId=%s&_=%s" % (parentId, timestamp)
+    }
+    result = http_lib.http(args).jBody
+    for dept in result['data']['deptList']:
+        deptId = dept['id']
+        li.append(deptId)
+        getAllDepartmentsId(deptId, li)
+    return li
+
+def deleteDeptAndUser(parentId, pageIndex, pageSize):
+    """
+    删除parentId下面的所有的人员和本部门
+    :param parentId:
+    :return:
+    """
+    if parentId != 0:
+        li = getAllDepartmentsId(parentId, [parentId])
+    else:
+        li = getAllDepartmentsId(parentId, [])
+    print li
+
+    for deptId in li:
+        userId = getUsersKey(deptId, pageIndex, pageSize)
+        deptIds = getAllDepartmentsId(deptId, [])
+        if len(deptIds) > 0:
+            for deptId1 in deptIds:
+                deleteDeptAndUser(deptId1, pageIndex, pageSize)
+        else:
+            if len(userId) != 0:
+                strUserId = ",".join(userId)
+                deleteUser(strUserId)
+                deleteDept(deptId)
+            else:
+                deleteDept(deptId)
+
+def test(parentId, pageIndex, pageSize):
+    userId = getUsersKey(parentId, pageIndex, pageSize)
+    if len(userId) != 0:
+        strUserId = ",".join(userId)
+        deleteUser(strUserId)
+    deptIds = getAllDepartmentsId(parentId, [])
+    if len(deptIds) > 0:
+        for deptId1 in deptIds:
+            test(deptId1, pageIndex, pageSize)
+    else:
+        print "删除部门id=" + str(parentId) + "的部门"
+        deleteDept(parentId)
+
+
+
+
+
 
 def saveDept(deptName, sequence, parentId, oldSequence=None, oldParentId=None, isJudgeExist=None):
     """
@@ -66,14 +128,34 @@ def getUsers(deptId, pageIndex, pageSize):
     }
     return http_lib.http(args)
 
-def deleteUser(userIds):
+def getUsersKey(deptId, pageIndex, pageSize):
+    """
+    获取人员列表
+    :param deptId: 要获取部门人员的部门ID
+    :param pageIndex: 从第几页开始
+    :param pageSize: 每页多少人
+    :return: keyList
+    """
+    timestamp = str(int(time.time() * 1000))
+    args = {
+        'url': "http://admin.jituancaiyun.net/entadmin/contact/dept/users?deptId=%s&pageIndex=%s&pageSize=%s&_=%s" % (
+            deptId, pageIndex, pageSize, timestamp)
+    }
+    result = http_lib.http(args).jBody
+    li = []
+    if None != result['data']['users']:
+        for user in result['data']['users']:
+            li.append(str(user['id']))
+    return li
+
+def deleteUser(strUserId):
     """
     删除人员
     """
     args = {
         'url' : '/entadmin/batchDelUser',
         'data' : {
-            'userIds' : userIds # 参数样式：'128','129','130','131','132'
+            'userIds' : strUserId # 参数样式：'128','129','130','131','132'
         }
     }
     return http_lib.http(args)
@@ -155,14 +237,21 @@ def getAdminList(role):
     :return:
     """
     timestamp = str(int(time.time() * 1000))
-    args = {
-        'url': "http://admin.jituancaiyun.net/entadmin/getAdminList?roleId=%s&_=%s" % (role, timestamp)
-    }
+
+    if config_file.IS_ON_LINE:
+        args = {
+            'url': "https://admin.jituancaiyun.com/entadmin/getAdminList?roleId=%s&_=%s" % (role, timestamp)
+        }
+    else:
+        args = {
+            'url': "http://admin.jituancaiyun.net/entadmin/getAdminList?roleId=%s&_=%s" % (role, timestamp)
+        }
     return http_lib.http(args)
 
 if __name__ == '__main__':
-
     # li = [123, 124, 125, 126, 127, 128, 129, 130]
-    print getAdminList(5).body
+    print test(2,1,100)
+    # print getUsersKey(1,1,100)
+    # print getAllDepartmentsId(0,[])
 
     # re = getUsers(0,1,10)
