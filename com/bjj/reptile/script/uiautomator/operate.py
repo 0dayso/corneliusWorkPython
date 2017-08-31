@@ -27,14 +27,20 @@ def compareImage(path):
     return (dif / 255.0 * 100) / component
 
 def isSame(name):
-    result = d.screenshot("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
+    d.screenshot("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
     # result.writeToFile("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png", 'png')
     sleep(1.5)
 
-    im = Image.open("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
-    box = (417, 608, 687, 695)
-    region = im.crop(box)
-    region.save("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot1.png")
+    if name == "only":
+        im = Image.open("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
+        box = (417, 608, 599, 695)
+        region = im.crop(box)
+        region.save("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot1.png")
+    else:
+        im = Image.open("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
+        box = (417, 608, 687, 695)
+        region = im.crop(box)
+        region.save("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot1.png")
     component = 0.0
     if name == "city":
         path = "E:\\workspace\\corneliusWorkPython\\snapshot\\city.png"
@@ -65,6 +71,7 @@ def home():
 
 def startGame():
     d.wakeup()
+    d.click(256, 1123)
     sleep(1)
     d.click(451, 408)
     sleep(0.5)
@@ -222,6 +229,10 @@ def upgrade(index, name):
             print "upgrade fy"
             menu(1)
             upgradeButton()
+    elif name == "cj":
+            print "cj"
+            menu(1)
+            d.click(800, 461)
 
 def menu(index):
     """
@@ -254,7 +265,7 @@ def city1():
     upgrade(6, "gc")
     upgrade(5, "by")
     upgrade(7, "jc")
-    # upgrade(12, "business")
+    upgrade(12, "business")
 
 def city2():
     selectCity(2)
@@ -263,7 +274,7 @@ def city2():
     upgrade(3, "xj")
     upgrade(2, "t")
     upgrade(1, "nc")
-    # upgrade(12, "business")
+    upgrade(12, "business")
 
 def city3():
     selectCity(3)
@@ -274,17 +285,33 @@ def city3():
     upgrade(1, "nc")
     upgrade(6, "gc")
     upgrade(5, "by")
-    # upgrade(12, "business")
+    upgrade(12, "business")
 
 def city4():
     selectCity(4)
     upgrade(0, "")
-    # upgrade(4, "sy")
+    upgrade(4, "sy")
     upgrade(11, "xj")
     upgrade(3, "t")
     upgrade(7, "nc")
     upgrade(12, "gc")
     upgrade(10, "by")
+
+def city5():
+    selectCity(5)
+    upgrade(0, "")
+    upgrade(1, "cj")
+    upgrade(2, "cj")
+    upgrade(3, "cj")
+    upgrade(4, "cj")
+    upgrade(5, "cj")
+    upgrade(6, "cj")
+    upgrade(7, "cj")
+    upgrade(8, "cj")
+    upgrade(9, "cj")
+    upgrade(10, "cj")
+    upgrade(11, "cj")
+    upgrade(12, "cj")
 
 def task():
     startGame()
@@ -293,10 +320,16 @@ def task():
     city3()
     city4()
     home()
+    d.sleep()
 
 def task1():
     startGame()
     selectCity(1)
     upgrade(4, "sy")
     home()
+    d.sleep()
 
+if __name__ == '__main__':
+    for i in range(0, 10):
+        task()
+        sleep(60 * 60)

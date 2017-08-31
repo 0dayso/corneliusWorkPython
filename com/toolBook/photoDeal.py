@@ -6,7 +6,7 @@ from PIL import Image
 def cropImage(s):
     im = Image.open('C:\\Users\\ShineMo-177\\Desktop\\log\\y\\%s.png'%s)
 
-    box = (417, 608, 687, 695)
+    box = (417, 608, 599, 695)
 
     region = im.crop(box)
 
@@ -36,5 +36,4 @@ def compareImage():
 if __name__ == '__main__':
     # compareImage()
 
-    cropImage(7)
     cropImage(8)

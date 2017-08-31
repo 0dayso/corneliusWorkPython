@@ -3,8 +3,10 @@ from time import sleep
 
 from uiautomator import device as d
 
+for i in range(0, 10):
+    print i
+    d.wakeup()
 
-d.wakeup()
-d.screenshot("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
-sleep(2)
-d.sleep()
+    sleep(10)
+    # d.screen.off()
+    # sleep(2) #1175 2068 2030 700
