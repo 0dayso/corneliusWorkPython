@@ -34,4 +34,7 @@ def compareImage():
     return (dif / 255.0 * 100) / ncomponents
 
 if __name__ == '__main__':
-    compareImage()
+    # compareImage()
+
+    cropImage(7)
+    cropImage(8)

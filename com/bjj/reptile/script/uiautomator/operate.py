@@ -1,11 +1,10 @@
 # coding:utf8
 
-
-from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 from itertools import izip
 from PIL import Image
+from time import sleep
+from uiautomator import device as d
 
-device = MonkeyRunner.waitForConnection()
 waitTime = 6
 
 def compareImage(path):
@@ -28,8 +27,8 @@ def compareImage(path):
     return (dif / 255.0 * 100) / component
 
 def isSame(name):
-    result = device.takeSnapshot()
-    result.writeToFile("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png", 'png')
+    result = d.screenshot("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
+    # result.writeToFile("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png", 'png')
     sleep(1.5)
 
     im = Image.open("E:\\workspace\\corneliusWorkPython\\snapshot\\snapshot.png")
@@ -60,44 +59,40 @@ def isSame(name):
     else:
         return False
 
-
-def sleep(seconds):
-    MonkeyRunner.sleep(seconds)
-
 def home():
-    device.press('KEYCODE_HOME','DOWN_AND_UP')
+    d.press.home()
     sleep(1)
 
 def startGame():
-    device.wake()
+    d.wakeup()
     sleep(1)
-    device.touch(451, 408,MonkeyDevice.DOWN_AND_UP)
+    d.click(451, 408)
     sleep(0.5)
-    device.touch(277, 543,MonkeyDevice.DOWN_AND_UP)
+    d.click(277, 543)
     for i in range(waitTime):
         sleep(10)
-        device.touch(277, 543,MonkeyDevice.DOWN_AND_UP)
+        d.click(277, 543)
         print "sleep " + str((i+1) * 10) + " seconds"
     # 点掉所有的框
-    device.touch(1069, 80,MonkeyDevice.DOWN_AND_UP)
+    d.click(1069, 80)
     sleep(1)
     # 进入游戏
-    device.touch(420, 325,MonkeyDevice.DOWN_AND_UP)
+    d.click(420, 325)
     sleep(10)
     # 点掉所有的框
-    device.touch(1069, 80,MonkeyDevice.DOWN_AND_UP)
+    d.click(1069, 80)
     sleep(0.5)
 
 def close():
-    device.touch(1262, 30, MonkeyDevice.DOWN_AND_UP)
+    d.click(1262, 30)
     sleep(1)
 
 def upgradeButton():
-    device.touch(1176, 687, MonkeyDevice.DOWN_AND_UP)
+    d.click(1176, 687)
     sleep(1.5)
 
 def upgradeCity():
-    device.touch(617, 365,MonkeyDevice.DOWN_AND_UP)
+    d.click(617, 365)
     sleep(1)
     if isSame("city"):
         print "upgradeCity"
@@ -106,29 +101,29 @@ def upgradeCity():
 
 def selectCity(num):
     print "select city " + str(num)
-    device.touch(44, 521,MonkeyDevice.DOWN_AND_UP)
+    d.click(44, 521)
     sleep(2)
     if num == 1:
-        device.touch(115, 29,MonkeyDevice.DOWN_AND_UP)
-        sleep(15) 
+        d.click(115, 29)
+        sleep(15)
     if num == 2:
-        device.touch(115, 90,MonkeyDevice.DOWN_AND_UP)
-        sleep(15) 
+        d.click(115, 90)
+        sleep(15)
     if num == 3:
-        device.touch(115, 150,MonkeyDevice.DOWN_AND_UP)
-        sleep(15) 
+        d.click(115, 150)
+        sleep(15)
     if num == 4:
-        device.touch(115, 220,MonkeyDevice.DOWN_AND_UP)
-        sleep(15) 
+        d.click(115, 220)
+        sleep(15)
     if num == 5:
-        device.touch(115, 280,MonkeyDevice.DOWN_AND_UP)
-        sleep(15) 
+        d.click(115, 280)
+        sleep(15)
     if num == 6:
-        device.touch(115, 350,MonkeyDevice.DOWN_AND_UP)
-        sleep(15) 
+        d.click(115, 350)
+        sleep(15)
     if num == 7:
-        device.touch(115, 410,MonkeyDevice.DOWN_AND_UP)
-        sleep(15) 
+        d.click(115, 410)
+        sleep(15)
 
 def upgrade(index, name):
     """
@@ -140,40 +135,40 @@ def upgrade(index, name):
     if index == 0:
         upgradeCity()
     elif index == 1:
-        device.touch(788, 360,MonkeyDevice.DOWN_AND_UP)
+        d.click(788, 360)
         sleep(1)
     elif index == 2:
-        device.touch(769, 438,MonkeyDevice.DOWN_AND_UP)
+        d.click(769, 438)
         sleep(1)
     elif index == 3:
-        device.touch(670, 500,MonkeyDevice.DOWN_AND_UP)
+        d.click(670, 500)
         sleep(1)
     elif index == 4:
-        device.touch(611, 565,MonkeyDevice.DOWN_AND_UP)
+        d.click(611, 565)
         sleep(1)
     elif index == 5:
-        device.touch(477, 528,MonkeyDevice.DOWN_AND_UP)
+        d.click(477, 528)
         sleep(1)
     elif index == 6:
-        device.touch(385, 457,MonkeyDevice.DOWN_AND_UP)
+        d.click(385, 457)
         sleep(1)
     elif index == 7:
-        device.touch(559, 462,MonkeyDevice.DOWN_AND_UP)
+        d.click(559, 462)
         sleep(1)
     elif index == 8:
-        device.touch(449, 352,MonkeyDevice.DOWN_AND_UP)
+        d.click(449, 352)
         sleep(1)
     elif index == 9:
-        device.touch(521, 294,MonkeyDevice.DOWN_AND_UP)
+        d.click(521, 294)
         sleep(1)
     elif index == 10:
-        device.touch(615, 258,MonkeyDevice.DOWN_AND_UP)
+        d.click(615, 258)
         sleep(1)
     elif index == 11:
-        device.touch(734, 285,MonkeyDevice.DOWN_AND_UP)
+        d.click(734, 285)
         sleep(1)
     elif index == 12:
-        device.touch(833, 564,MonkeyDevice.DOWN_AND_UP)
+        d.click(833, 564)
         sleep(1)
 
 
@@ -235,17 +230,17 @@ def menu(index):
     :return:
     """
     if index == 1:
-        device.touch(464, 656, MonkeyDevice.DOWN_AND_UP)
+        d.click(464, 656)
     elif index == 2:
-        device.touch(556, 655, MonkeyDevice.DOWN_AND_UP)
+        d.click(556, 655)
     elif index == 3:
-        device.touch(645, 652, MonkeyDevice.DOWN_AND_UP)
+        d.click(645, 652)
     elif index == 4:
-        device.touch(736, 650, MonkeyDevice.DOWN_AND_UP)
+        d.click(736, 650)
     elif index == 5:
-        device.touch(823, 650, MonkeyDevice.DOWN_AND_UP)
+        d.click(823, 650)
     elif index == 6:
-        device.touch(909, 654, MonkeyDevice.DOWN_AND_UP)
+        d.click(909, 654)
     sleep(1.5)
 
 #     nc, t, xj, sy, by, gc, bj, business, jc, fy
@@ -304,19 +299,4 @@ def task1():
     selectCity(1)
     upgrade(4, "sy")
     home()
-
-
-
-
-
-if __name__ == '__main__':
-    task()
-    # for t in range(1, 2):
-    #     task()
-    #     time.sleep(60 * 60)
-
-
-
-
-
 
