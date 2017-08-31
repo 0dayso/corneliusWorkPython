@@ -3,20 +3,20 @@ from itertools import izip
 from PIL import Image
 
 
-def cropImage():
-    im = Image.open('C:\\Users\\ShineMo-177\\Desktop\\log\\y\\Screenshot_20170823-092140.png')
+def cropImage(s):
+    im = Image.open('C:\\Users\\ShineMo-177\\Desktop\\log\\y\\%s.png'%s)
 
-    box = (417, 608, 961, 714)
+    box = (417, 608, 687, 695)
 
     region = im.crop(box)
 
-    region.save('E:\\workspace\\corneliusWorkPython\\snapshot\\s1.png')
+    region.save('E:\\workspace\\corneliusWorkPython\\snapshot\\s%s.png'%s)
     return 'E:\\workspace\\corneliusWorkPython\\snapshot\\s1.png'
 
 
 def compareImage():
-    i1 = Image.open('E:\\workspace\\corneliusWorkPython\\snapshot\\s1.png')
-    i2 = Image.open('E:\\workspace\\corneliusWorkPython\\snapshot\\s2.png')
+    i1 = Image.open('E:\\workspace\\corneliusWorkPython\\snapshot\\s4.png')
+    i2 = Image.open('E:\\workspace\\corneliusWorkPython\\snapshot\\s5.png')
 
     # assert i1.mode == i2.mode, "Different kinds of images."
     # assert i1.size == i2.size, "Different sizes."
@@ -34,4 +34,4 @@ def compareImage():
     return (dif / 255.0 * 100) / ncomponents
 
 if __name__ == '__main__':
-    print compareImage() <= 0.1
+    compareImage()
