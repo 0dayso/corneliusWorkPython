@@ -60,7 +60,7 @@ def isSame(name):
     elif name == "only":
         path = "E:\\workspace\\corneliusWorkPython\\snapshot\\only.png"
         component = compareImage(path)
-    if component < 2.0:
+    if component < 0.4:
         return True
     else:
         return False
@@ -290,7 +290,7 @@ def city3():
 def city4():
     selectCity(4)
     upgrade(0, "")
-    upgrade(4, "sy")
+    upgrade(2, "sy")
     upgrade(11, "xj")
     upgrade(3, "t")
     upgrade(7, "nc")
@@ -319,6 +319,7 @@ def task():
     city2()
     city3()
     city4()
+    # city5()
     home()
     d.sleep()
 
@@ -330,6 +331,7 @@ def task1():
     d.sleep()
 
 if __name__ == '__main__':
+    sleep(60 * 60)
     for i in range(0, 10):
         task()
         sleep(60 * 60)
