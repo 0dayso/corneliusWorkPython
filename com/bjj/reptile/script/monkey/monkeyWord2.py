@@ -185,13 +185,17 @@ def menu(index):
 def city1():
     selectCity(1)
     upgrade(0, "")
-    upgrade(4, "sy")
-    upgrade(3, "xj")
+    # upgrade(4, "sy")
+    # upgrade(3, "xj")
     upgrade(2, "t")
     upgrade(1, "nc")
     upgrade(6, "gc")
     upgrade(5, "by")
-    upgrade(7, "jc")
+    # upgrade(7, "jc")
+    upgrade(8, "bj")
+    upgrade(9, "fy")
+    upgrade(10, "fy")
+    upgrade(11, "fy")
     # upgrade(12, "business")
 
 def city2():
@@ -224,29 +228,44 @@ def city4():
     upgrade(12, "gc")
     upgrade(10, "by")
 
+def city(index):
+    selectCity(index)
+    # upgrade(0, "")
+    # upgrade(4, "sy")
+    # upgrade(3, "xj")
+    upgrade(2, "t")
+    upgrade(1, "nc")
+    upgrade(6, "gc")
+    upgrade(5, "by")
+    # upgrade(7, "jc")
+    # upgrade(8, "bj")
+    upgrade(9, "fy")
+    upgrade(10, "fy")
+    upgrade(11, "fy")
+    # upgrade(12, "business")
+
+
 def task():
     startGame()
-    city1()
-    city2()
-    city3()
-    city4()
+    city(2)
     home()
 
-def task1():
-    startGame()
-    selectCity(1)
-    upgrade(4, "sy")
-    home()
+
+
+
+
 
 
 
 
 
 if __name__ == '__main__':
-    task()
-    # for t in range(1, 2):
-    #     task()
-    #     time.sleep(60 * 60)
+    # task()
+    sleep(2 * 60)
+    for t in range(1, 6):
+        print "start " + str(t) + " time"
+        task()
+        sleep(4 * 60)
 
 
 
