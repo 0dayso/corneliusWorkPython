@@ -2,9 +2,14 @@
 
 
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
+import datetime
 
 device = MonkeyRunner.waitForConnection()
-waitTime = 6
+waitTime = 2 # sleep时间，2表示sleep 2 * 30 秒的时间
+
+def startTime():
+    now = datetime.datetime.now()
+    print now.strftime('%Y-%m-%d %H:%M:%S')
 
 def sleep(seconds):
     MonkeyRunner.sleep(seconds)
@@ -20,9 +25,9 @@ def startGame():
     sleep(0.5)
     device.touch(277, 543,MonkeyDevice.DOWN_AND_UP)
     for i in range(waitTime):
-        sleep(10)
+        sleep(30)
         device.touch(277, 543,MonkeyDevice.DOWN_AND_UP)
-        print "sleep " + str((i+1) * 10) + " seconds"
+        print "sleep " + str((i+1) * 30) + " seconds"
     # 点掉所有的框
     device.touch(1069, 80,MonkeyDevice.DOWN_AND_UP)
     sleep(1)
@@ -200,72 +205,125 @@ def city1():
 
 def city2():
     selectCity(2)
-    upgrade(0, "")
-    upgrade(4, "sy")
-    upgrade(3, "xj")
-    upgrade(2, "t")
-    upgrade(1, "nc")
-    # upgrade(12, "business")
+    # upgrade(0, "")
+    # upgrade(4, "sy")
+    # upgrade(3, "xj")
+    # upgrade(2, "t")
+    # upgrade(1, "nc")
+    # upgrade(6, "gc")
+    # upgrade(5, "by")
+    upgrade(7, "jc")
+    upgrade(8, "bj")
+    upgrade(9, "fy")
+    upgrade(10, "fy")
+    upgrade(11, "fy")
+    upgrade(12, "business")
 
 def city3():
     selectCity(3)
-    upgrade(0, "")
-    upgrade(4, "sy")
-    upgrade(3, "xj")
-    upgrade(2, "t")
-    upgrade(1, "nc")
-    upgrade(6, "gc")
-    upgrade(5, "by")
-    # upgrade(12, "business")
+    # upgrade(0, "")
+    # upgrade(4, "sy")
+    # upgrade(3, "xj")
+    # upgrade(2, "t")
+    # upgrade(1, "nc")
+    # upgrade(6, "gc")
+    # upgrade(5, "by")
+    # upgrade(7, "jc")
+    # upgrade(8, "bj")
+    upgrade(9, "fy")
+    upgrade(10, "fy")
+    upgrade(11, "fy")
+    upgrade(12, "business")
 
 def city4():
     selectCity(4)
-    upgrade(0, "")
+    # upgrade(0, "")
     # upgrade(4, "sy")
-    upgrade(11, "xj")
-    upgrade(3, "t")
-    upgrade(7, "nc")
-    upgrade(12, "gc")
-    upgrade(10, "by")
+    # upgrade(3, "xj")
+    # upgrade(2, "t")
+    # upgrade(1, "nc")
+    # upgrade(6, "gc")
+    # upgrade(5, "by")
+    # upgrade(7, "jc")
+    # upgrade(8, "bj")
+    upgrade(9, "fy")
+    upgrade(10, "fy")
+    upgrade(11, "fy")
+    upgrade(12, "business")
+
+def city5():
+    selectCity(5)
+    # upgrade(0, "")
+    # upgrade(4, "sy")
+    # upgrade(3, "xj")
+    # upgrade(2, "t")
+    # upgrade(1, "nc")
+    # upgrade(6, "gc")
+    # upgrade(5, "by")
+    # upgrade(7, "jc")
+    # upgrade(8, "bj")
+    upgrade(9, "fy")
+    upgrade(10, "fy")
+    upgrade(11, "fy")
+    upgrade(12, "business")
+
+def city6():
+    selectCity(6)
+    # upgrade(0, "")
+    # upgrade(4, "sy")
+    # upgrade(3, "xj")
+    # upgrade(2, "t")
+    # upgrade(1, "nc")
+    # upgrade(6, "gc")
+    # upgrade(5, "by")
+    # upgrade(7, "jc")
+    # upgrade(8, "bj")
+    upgrade(9, "fy")
+    upgrade(10, "fy")
+    upgrade(11, "fy")
+    upgrade(12, "business")
 
 def city(index):
     selectCity(index)
     # upgrade(0, "")
     # upgrade(4, "sy")
     # upgrade(3, "xj")
-    upgrade(2, "t")
+    # upgrade(2, "t")
     upgrade(1, "nc")
-    upgrade(6, "gc")
+    # upgrade(6, "gc")
     upgrade(5, "by")
     # upgrade(7, "jc")
     # upgrade(8, "bj")
-    upgrade(9, "fy")
-    upgrade(10, "fy")
-    upgrade(11, "fy")
+    # upgrade(9, "fy")
+    # upgrade(10, "fy")
+    # upgrade(11, "fy")
     # upgrade(12, "business")
+
 
 
 def task():
     startGame()
-    city(2)
+    startTime()
+    city2()
+    city3()
+    city4()
+    city5()
+    city6()
     home()
 
 
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
+    ti = 6
     # task()
-    sleep(2 * 60)
-    for t in range(1, 6):
-        print "start " + str(t) + " time"
+    for t in range(1, ti):
+        print "============start " + str(t) + " time============"
         task()
-        sleep(4 * 60)
+        if t == ti - 1:
+            break
+        else:
+            print "============ END ============"
+            sleep(30 * 60)
+    print "TOTAL END"
 
 
 

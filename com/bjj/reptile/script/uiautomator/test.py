@@ -1,12 +1,18 @@
 # coding:utf8
-from time import sleep
+import time
+import datetime
 
 from uiautomator import device as d
 
-for i in range(0, 10):
-    print i
-    d.wakeup()
+def startTime():
+    now = datetime.datetime.now()
 
-    sleep(10)
-    # d.screen.off()
-    # sleep(2) #1175 2068 2030 700
+    print now.strftime('%Y-%m-%d %H:%M:%S')
+    return now
+
+if __name__ == '__main__':
+    t1 = startTime()
+    time.sleep(13)
+    t2 = startTime()
+
+    print t2 - t1
