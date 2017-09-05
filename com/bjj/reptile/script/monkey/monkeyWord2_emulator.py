@@ -25,9 +25,9 @@ def home():
 def startGame():
     device.wake()
     sleep(1)
-    device.touch(451, 408,MonkeyDevice.DOWN_AND_UP)
+    device.touch(70, 237, MonkeyDevice.DOWN_AND_UP)
     sleep(0.5)
-    device.touch(277, 543,MonkeyDevice.DOWN_AND_UP)
+    device.touch(69, 330, MonkeyDevice.DOWN_AND_UP)
     for i in range(waitTime):
         sleep(30)
         device.touch(277, 543,MonkeyDevice.DOWN_AND_UP)
@@ -260,19 +260,19 @@ def city4(chi):
 
 def city5(chi):
     selectCity(5)
-    upgrade(0, "", chi)
-    upgrade(4, "sy", chi)
-    upgrade(3, "xj", chi)
-    upgrade(2, "t", chi)
-    upgrade(1, "nc", chi)
+    # upgrade(0, "", chi)
+    # upgrade(4, "sy", chi)
+    # upgrade(3, "xj", chi)
+    # upgrade(2, "t", chi)
+    # upgrade(1, "nc", chi)
     # upgrade(6, "gc", chi)
     # upgrade(5, "by", chi)
-    # upgrade(7, "jc", chi)
+    upgrade(7, "jc", chi)
     # upgrade(8, "bj", chi)
     upgrade(12, "business", chi)
-    upgrade(9, "fy", chi)
-    upgrade(10, "fy", chi)
-    upgrade(11, "fy", chi)
+    # upgrade(9, "fy", chi)
+    # upgrade(10, "fy", chi)
+    # upgrade(11, "fy", chi)
 
 
 def city6(chi):
@@ -313,19 +313,20 @@ def city(index, chi):
 def task(chi):
     startGame()
     startTime()
-    city2(chi)
-    city3(chi)
-    city4(chi)
+    # city1(chi)
+    # city2(chi)
+    # city3(chi)
+    # city4(chi)
     city5(chi)
-    city6(chi)
+    # city6(chi)
     endTime()
     home()
 
 
 if __name__ == '__main__':
-    ti = 2
+    ti = 7
     # task()
-    # sleep(60 * 60)
+    sleep(20 * 60)
     for t in range(1, ti):
         print "============start " + str(t) + " time============"
         task(t)

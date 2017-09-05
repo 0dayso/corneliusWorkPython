@@ -11,8 +11,4 @@ def startTime():
     return now
 
 if __name__ == '__main__':
-    t1 = startTime()
-    time.sleep(13)
-    t2 = startTime()
-
-    print t2 - t1
+    print 10%4
