@@ -7,10 +7,11 @@ import time
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-url1 = "http://www.dawenxue.net/8613/"
+# url1 = "http://www.dawenxue.net/8613/"
+url1 = "http://www.dawenxue.net/49807/" #大明最后一个太子
 text = "E:\\workspace\\corneliusWorkPython\\com\\bjj\\reptile\\novel\\wuCuo\\text.txt"
 error = "E:\\workspace\\corneliusWorkPython\\com\\bjj\\reptile\\novel\\wuCuo\\error.txt"
-text1 = "E:\\workspace\\corneliusWorkPython\\com\\bjj\\reptile\\novel\\wuCuo\\13.txt"
+text1 = "E:\\workspace\\corneliusWorkPython\\com\\bjj\\reptile\\novel\\wuCuo\\allChapter.txt"
 
 
 f = open(text, "r+")

@@ -4,7 +4,8 @@ import urllib2
 
 # url1 = "http://www.dawenxue.net/42082/11179069.html"
 
-url1 = "http://www.dawenxue.net/2905/752274.html"
+# url1 = "http://www.dawenxue.net/2905/752274.html"
+url1 = "http://www.dawenxue.net/49807/"
 
 
 def getSingleChapterContent(url):

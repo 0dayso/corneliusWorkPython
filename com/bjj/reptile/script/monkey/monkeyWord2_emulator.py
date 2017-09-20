@@ -201,6 +201,22 @@ def menu(index):
 def city1(chi):
     selectCity(1)
     upgrade(0, "", chi)
+    # upgrade(4, "sy", chi)
+    # upgrade(3, "xj", chi)
+    upgrade(2, "t", chi)
+    upgrade(1, "nc", chi)
+    upgrade(6, "gc", chi)
+    upgrade(5, "by", chi)
+    # upgrade(7, "jc", chi)
+    # upgrade(8, "bj", chi)
+    # upgrade(9, "fy", chi)
+    # upgrade(10, "fy", chi)
+    # upgrade(11, "fy", chi)
+    # upgrade(12, "business", chi)
+
+def city2(chi):
+    selectCity(2)
+    upgrade(0, "", chi)
     upgrade(4, "sy", chi)
     upgrade(3, "xj", chi)
     upgrade(2, "t", chi)
@@ -209,48 +225,16 @@ def city1(chi):
     # upgrade(5, "by", chi)
     # upgrade(7, "jc", chi)
     # upgrade(8, "bj", chi)
-    upgrade(9, "fy", chi)
+    upgrade(12, "business", chi)
+    # upgrade(9, "fy", chi)
     # upgrade(10, "fy", chi)
-    # upgrade(11, "fy", chi)
-    upgrade(12, "business", chi)
-
-def city2(chi):
-    selectCity(2)
-    upgrade(0, "", chi)
-    # upgrade(4, "sy", chi)
-    upgrade(3, "xj", chi)
-    upgrade(2, "t", chi)
-    upgrade(1, "nc", chi)
-    upgrade(6, "gc", chi)
-    upgrade(5, "by", chi)
-    # upgrade(7, "jc", chi)
-    upgrade(8, "bj", chi)
-    upgrade(12, "business", chi)
-    upgrade(9, "fy", chi)
-    upgrade(10, "fy", chi)
     # upgrade(11, "fy", chi)
 
 
 def city3(chi):
     selectCity(3)
     upgrade(0, "", chi)
-    # upgrade(4, "sy", chi)
-    upgrade(3, "xj", chi)
-    upgrade(2, "t", chi)
-    upgrade(1, "nc", chi)
-    upgrade(6, "gc", chi)
-    upgrade(5, "by", chi)
-    # upgrade(7, "jc", chi)
-    # upgrade(8, "bj", chi)
-    upgrade(12, "business", chi)
-    upgrade(9, "fy", chi)
-    upgrade(10, "fy", chi)
-    upgrade(11, "fy", chi)
-
-def city4(chi):
-    selectCity(4)
-    upgrade(0, "", chi)
-    # upgrade(4, "sy", chi)
+    upgrade(4, "sy", chi)
     upgrade(3, "xj", chi)
     upgrade(2, "t", chi)
     upgrade(1, "nc", chi)
@@ -259,16 +243,32 @@ def city4(chi):
     # upgrade(7, "jc", chi)
     # upgrade(8, "bj", chi)
     upgrade(12, "business", chi)
-    upgrade(9, "fy", chi)
-    upgrade(10, "fy", chi)
-    upgrade(11, "fy", chi)
+    # upgrade(9, "fy", chi)
+    # upgrade(10, "fy", chi)
+    # upgrade(11, "fy", chi)
+
+def city4(chi):
+    selectCity(4)
+    upgrade(0, "", chi)
+    upgrade(4, "sy", chi)
+    upgrade(3, "xj", chi)
+    upgrade(2, "t", chi)
+    upgrade(1, "nc", chi)
+    # upgrade(6, "gc", chi)
+    # upgrade(5, "by", chi)
+    # upgrade(7, "jc", chi)
+    # upgrade(8, "bj", chi)
+    upgrade(12, "business", chi)
+    # upgrade(9, "fy", chi)
+    # upgrade(10, "fy", chi)
+    # upgrade(11, "fy", chi)
 
 
 def city5(chi):
     selectCity(5)
     upgrade(0, "", chi)
-    # upgrade(4, "sy", chi)
-    # upgrade(3, "xj", chi)
+    upgrade(4, "sy", chi)
+    upgrade(3, "xj", chi)
     upgrade(2, "t", chi)
     upgrade(1, "nc", chi)
     # upgrade(6, "gc", chi)
@@ -276,9 +276,9 @@ def city5(chi):
     # upgrade(7, "jc", chi)
     # upgrade(8, "bj", chi)
     upgrade(12, "business", chi)
-    upgrade(9, "fy", chi)
-    upgrade(10, "fy", chi)
-    upgrade(11, "fy", chi)
+    # upgrade(9, "fy", chi)
+    # upgrade(10, "fy", chi)
+    # upgrade(11, "fy", chi)
 
 
 def city6(chi):
@@ -319,11 +319,11 @@ def city7(chi):
 def task(chi):
     startGame()
     startTime()
-    # city1(chi)
     city1(chi)
-    city2(chi)
-    city3(chi)
-    city4(chi)
+    # city2(chi)
+    # city3(chi)
+    # city4(chi)
+    # city5(chi)
     # city6(chi)
     # city7(chi)
     endTime()
@@ -331,7 +331,7 @@ def task(chi):
 
 
 if __name__ == '__main__':
-    ti = 10
+    ti = 30
     # task()
     # sleep(120 * 60)
     for t in range(1, ti):
@@ -343,7 +343,7 @@ if __name__ == '__main__':
             break
         else:
             print "============ END ============"
-            sleep(30 * 60)
+            sleep(10 * 60)
     print "TOTAL END"
 
 

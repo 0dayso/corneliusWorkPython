@@ -6,6 +6,8 @@ sys.path.append('..')
 from core import http_lib
 from basic import config_file
 
+class Response():
+    pass
 
 def getDepartments(parentId):
     """
@@ -246,11 +248,76 @@ def getAdminList(role):
         args = {
             'url': "http://admin.jituancaiyun.net/entadmin/getAdminList?roleId=%s&_=%s" % (role, timestamp)
         }
-    return http_lib.http(args)
+    resp = http_lib.http(args).jBody
+    d = Response()
+    uids = []
+    adminIds = []
+    mobiles = []
+    for i in resp['data']:
+        uids.append(i['uid'])
+        adminIds.append(i['adminId'])
+        mobiles.append(i['adminMobile'])
+    d.uid = uids
+    d.adminId = adminIds
+    d.mobile = mobiles
+    return d
+
+
+def getOrgRole():
+    """
+    获取 功能角色 - 管理员角色
+    :return: data data.id 返回所有的角色 data.name返回所有的角色名称
+    """
+    timestamp = str(int(time.time() * 1000))
+
+    if config_file.IS_ON_LINE:
+        args = {
+            'url': "https://admin.jituancaiyun.com/entadmin/getOrgRole?_=%s" % timestamp
+        }
+    else:
+        args = {
+            'url': "http://admin.jituancaiyun.net/entadmin/getOrgRole?_=%s" % timestamp
+        }
+    resp = http_lib.http(args)
+    body = resp.jBody
+    d = Response()
+    ids = []
+    names = []
+    for i in body['data']:
+        ids.append(i['id'])
+        names.append(i['name'])
+    d.id = ids
+    d.name = names
+    return d
+
+def deleteRole(roleId):
+    """
+    删除 功能角色 - 管理员角色
+    :param roleId: 角色Id
+    :return:
+    """
+
+    timestamp = str(int(time.time() * 1000))
+
+    if config_file.IS_ON_LINE:
+        args = {
+            'url': "https://admin.jituancaiyun.com/entadmin/deleteRole?roleId=%s&_=%s" % (roleId, timestamp)
+        }
+    else:
+        args = {
+            'url': "http://admin.jituancaiyun.net/entadmin/deleteRole?roleId=%s&_=%s" % (roleId, timestamp)
+        }
+    http_lib.http(args)
+
+
 
 if __name__ == '__main__':
     # li = [123, 124, 125, 126, 127, 128, 129, 130]
-    print test(2,1,100)
+    # print getOrgRole()
+    d = getAdminList(0)
+    print d.uid
+    print d.adminId
+    print d.mobile
     # print getUsersKey(1,1,100)
     # print getAllDepartmentsId(0,[])
 

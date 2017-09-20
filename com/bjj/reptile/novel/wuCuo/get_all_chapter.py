@@ -4,7 +4,8 @@
 import re
 import urllib2
 
-url1 = "http://www.dawenxue.net/8613/"
+# url1 = "http://www.dawenxue.net/8613/"
+url1 = "http://www.dawenxue.net/49807/" #大明最后一个太子
 
 text1 = "E:\\workspace\\corneliusWorkPython\\com\\bjj\\reptile\\novel\\wuCuo\\allChapter.txt"
 
