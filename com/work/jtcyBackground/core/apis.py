@@ -5,6 +5,7 @@ import sys
 sys.path.append('..')
 from core import http_lib
 from basic import config_file
+from core import login as login
 
 class Response():
     pass
@@ -232,6 +233,20 @@ def deleteAdmin(mobile):
     }
     return http_lib.http(args)
 
+def saveOrgRole(roleName, description, modulePermIds):
+    if config_file.IS_ON_LINE:
+        url = "https://admin.jituancaiyun.com/entadmin/saveOrgRole"
+    else:
+        url = "http://admin.jituancaiyun.net/entadmin/saveOrgRole"
+    args = {
+        "url" : url,
+        "description" : description,
+        "modulePermIds" : modulePermIds,
+        "roleId" : "",
+        "roleName" : roleName
+    }
+    return http_lib.http(args)
+
 def getAdminList(role):
     """
     获取管理员列表
@@ -309,16 +324,54 @@ def deleteRole(roleId):
         }
     http_lib.http(args)
 
+def delPostLevel(postId):
+    """
+    删除 我的企业 - 企业信息设置 - 员工职级
+    :param postId:
+    :return:
+    """
+    timestamp = str(int(time.time() * 1000))
+
+    if config_file.IS_ON_LINE:
+        args = {
+            'url': "https://admin.jituancaiyun.com/entadmin/postlevel/delPostLevel?id=%s&_=%s" % (postId, timestamp)
+        }
+    else:
+        args = {
+            'url': "http://admin.jituancaiyun.net/entadmin/postlevel/delPostLevel?id=%s&_=%s" % (postId, timestamp)
+        }
+    print "开始删除" + str(postId) + "的职级"
+    http_lib.http(args)
+
+def getPostLevel():
+    """
+    获取 我的企业 - 企业信息设置 - 员工职级
+    :return: ids的列表
+    """
+    timestamp = str(int(time.time() * 1000))
+
+    if config_file.IS_ON_LINE:
+        args = {
+            'url': "http://admin.jituancaiyun.com/entadmin/postlevel/getPostLevel?_=%s" % timestamp
+        }
+    else:
+        args = {
+            'url': "http://admin.jituancaiyun.net/entadmin/postlevel/getPostLevel?_=%s" % timestamp
+        }
+    resp = http_lib.http(args).jBody
+    ids = []
+    for i in resp['data']:
+        ids.append(i['id'])
+    print "员工职级的id列表： ", ids
+    return ids
+
 
 
 if __name__ == '__main__':
-    # li = [123, 124, 125, 126, 127, 128, 129, 130]
-    # print getOrgRole()
-    d = getAdminList(0)
-    print d.uid
-    print d.adminId
-    print d.mobile
-    # print getUsersKey(1,1,100)
-    # print getAllDepartmentsId(0,[])
+    # login.login()
+    # li = ["2", "3", "4", "5", "6", "173", "1"]
+    # print saveOrgRole("123", "1232w43", li).body
+    ids = getPostLevel()
+    for i in ids:
+        delPostLevel(i)
 
-    # re = getUsers(0,1,10)
