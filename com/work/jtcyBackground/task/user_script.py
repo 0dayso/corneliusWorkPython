@@ -54,4 +54,4 @@ def addUser(deptId,nums):
 
 
 if __name__ == '__main__':
-    print getUserUidMobile(0,1,10)
+    print getUserUidMobile(0,1,100)

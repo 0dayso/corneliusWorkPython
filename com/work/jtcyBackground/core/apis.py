@@ -1,5 +1,6 @@
 #! usr/bin/python
 # coding:UTF-8
+import random
 import time
 import sys
 sys.path.append('..')
@@ -340,7 +341,6 @@ def delPostLevel(postId):
         args = {
             'url': "http://admin.jituancaiyun.net/entadmin/postlevel/delPostLevel?id=%s&_=%s" % (postId, timestamp)
         }
-    print "开始删除" + str(postId) + "的职级"
     http_lib.http(args)
 
 def getPostLevel():
@@ -365,13 +365,106 @@ def getPostLevel():
     print "员工职级的id列表： ", ids
     return ids
 
+def savePostLevel(description, name):
+    """
+    添加 我的企业 - 企业信息设置 - 员工职级
+    :param description: 职级描述
+    :param name: 职级名称
+    :return:
+    """
+    if config_file.IS_ON_LINE:
+        url = "https://admin.jituancaiyun.com/entadmin/postlevel/savePostLevel"
+    else:
+        url = "http://admin.jituancaiyun.net/entadmin/postlevel/savePostLevel"
+
+    args = {
+        'url' : url,
+        'data' : {
+            'description' : description,
+            'name' : name
+        }
+    }
+    return http_lib.http(args)
+
+def addCustom(fieldName):
+    """
+    添加个性化字段
+    我的企业 - 企业信息设置 - 通讯录个性化字段
+    :param fieldName: 个性化名称
+    :return:
+    """
+    if config_file.IS_ON_LINE:
+        url = "https://admin.jituancaiyun.com/entadmin/addCustom"
+    else:
+        url = "http://admin.jituancaiyun.net/entadmin/addCustom"
+    args = {
+        'url' : url,
+        'data' : {
+            'fieldName' : fieldName
+        }
+    }
+    return http_lib.http(args)
+
+def delCustom(customId):
+    """
+    删除个性化字段
+    我的企业 - 企业信息设置 - 通讯录个性化字段 - 删除
+    :param customId:
+    :return:
+    """
+    timestamp = str(int(time.time() * 1000))
+
+    if config_file.IS_ON_LINE:
+        args = {
+            'url': "https://admin.jituancaiyun.com/entadmin/delCustom?id=%s&_=%s" % (customId, timestamp)
+        }
+    else:
+        args = {
+            'url': "http://admin.jituancaiyun.net/entadmin/delCustom?id=%s&_=%s" % (customId, timestamp)
+        }
+    return http_lib.http(args)
+
+def getCustom():
+    """
+    获取个性化字段
+    我的企业 - 企业信息设置 - 通讯录个性化字段
+    :return:
+    """
+    timestamp = str(int(time.time() * 1000))
+
+    if config_file.IS_ON_LINE:
+        args = {
+            'url': "https://admin.jituancaiyun.com/entadmin/getCustom?_=%s" % timestamp
+        }
+    else:
+        args = {
+            'url': "http://admin.jituancaiyun.net/entadmin/getCustom?_=%s" % timestamp
+        }
+    resp = http_lib.http(args).jBody
+    # print resp
+    idCode = []
+    for li in resp['data']:
+        idCode.append(li['id'])
+    print "个性化字段id：", idCode
+    return idCode
+
+def delCustomAll():
+    """
+    删除企业下面的所有的个性化字段
+    :return:
+    """
+    li = getCustom()
+    for customId in li:
+        resp = delCustom(customId)
+        print "开始删除" + str(customId) + "的个性化字段", resp.body
+
+
 
 
 if __name__ == '__main__':
     # login.login()
     # li = ["2", "3", "4", "5", "6", "173", "1"]
     # print saveOrgRole("123", "1232w43", li).body
-    ids = getPostLevel()
-    for i in ids:
-        delPostLevel(i)
+    delCustomAll()
+
 
