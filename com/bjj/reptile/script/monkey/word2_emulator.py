@@ -4,7 +4,7 @@
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 import datetime
 
-device = MonkeyRunner.waitForConnection()
+device = MonkeyRunner.waitForConnection(6, "127.0.0.1:62001")
 waitTime = 2 # sleep时间，2表示sleep 2 * 30 秒的时间
 
 def startTime():
@@ -201,7 +201,7 @@ def menu(index):
 def city1(chi):
     selectCity(1)
     upgrade(0, "", chi)
-    upgrade(4, "sy", chi)
+    # upgrade(4, "sy", chi)
     upgrade(3, "xj", chi)
     upgrade(2, "t", chi)
     upgrade(1, "nc", chi)
@@ -216,9 +216,9 @@ def city1(chi):
 
 
 def city2(chi):
-    selectCity(2)
+    selectCity(3)
     upgrade(0, "", chi)
-    upgrade(4, "sy", chi)
+    # upgrade(4, "sy", chi)
     upgrade(3, "xj", chi)
     upgrade(2, "t", chi)
     upgrade(1, "nc", chi)
@@ -227,22 +227,22 @@ def city2(chi):
     # upgrade(7, "jc", chi)
     # upgrade(8, "bj", chi)
     upgrade(12, "business", chi)
-    # upgrade(9, "fy", chi)
-    # upgrade(10, "fy", chi)
+    upgrade(9, "fy", chi)
+    upgrade(10, "fy", chi)
     # upgrade(11, "fy", chi)
 
 
 def city3(chi):
-    selectCity(3)
+    selectCity(2)
     upgrade(0, "", chi)
     upgrade(4, "sy", chi)
     upgrade(3, "xj", chi)
     upgrade(2, "t", chi)
     upgrade(1, "nc", chi)
-    # upgrade(6, "gc", chi)
-    # upgrade(5, "by", chi)
-    # upgrade(7, "jc", chi)
-    # upgrade(8, "bj", chi)
+    upgrade(6, "gc", chi)
+    upgrade(5, "by", chi)
+    upgrade(7, "jc", chi)
+    upgrade(8, "bj", chi)
     upgrade(12, "business", chi)
     # upgrade(9, "fy", chi)
     # upgrade(10, "fy", chi)
@@ -320,9 +320,9 @@ def city7(chi):
 def task(chi):
     startGame()
     startTime()
-    city1(chi)
-    # city2(chi)
-    # city3(chi)
+    # city1(chi)
+    city2(chi)
+    city3(chi)
     # city4(chi)
     # city5(chi)
     # city6(chi)
@@ -332,7 +332,7 @@ def task(chi):
 
 
 if __name__ == '__main__':
-    ti = 8
+    ti =20
     # task()
     # sleep(120 * 60)
     for t in range(1, ti):
@@ -344,7 +344,12 @@ if __name__ == '__main__':
             break
         else:
             print "============ END ============"
-            sleep(40 * 60)
+            # if ti < 10:
+            sleep(30 * 60)
+            # elif ti < 20:
+            #     sleep(20 * 60)
+            # else:
+            #     sleep(30 * 60)
     print "TOTAL END"
 
 

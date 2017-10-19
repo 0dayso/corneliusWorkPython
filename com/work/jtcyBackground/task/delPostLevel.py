@@ -19,5 +19,5 @@ def delPostLevel():
 
 
 if __name__ == '__main__':
-    # login.login()
+    login.login()
     delPostLevel()

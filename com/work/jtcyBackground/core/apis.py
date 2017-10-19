@@ -152,6 +152,20 @@ def getUsersKey(deptId, pageIndex, pageSize):
             li.append(str(user['id']))
     return li
 
+def deleteUserBatch(strUserIds):
+    """
+    删除人员
+    """
+    # args = {
+    #     'url' : '/entadmin/batchDelUser',
+    #     'data' : {
+    #         'userIds' : strUserIds # 参数样式：'128','129','130','131','132'
+    #     }
+    # }
+    # return http_lib.http(args)
+    for userId in strUserIds:
+        deleteUser(userId)
+
 def deleteUser(strUserId):
     """
     删除人员
@@ -207,6 +221,15 @@ def saveUser(name, departmentId, mobile, sequence, isAllowLogin, customFieldStri
     return http_lib.http(args)
 
 def saveAdmin(uid, mobile, roleIds, deptIds=None):
+    """
+    添加管理员
+    功能角色 - 选择管理员角色 - 添加人员
+    :param uid:
+    :param mobile:
+    :param roleIds:
+    :param deptIds:
+    :return:
+    """
     # role: 0=企业管理员 3=部门管理员 5=超级管理员 6=薪资管理员 7=考勤管理员 8=资费管理员
     deptIdLi = []
     if roleIds == 0 :
@@ -225,6 +248,12 @@ def saveAdmin(uid, mobile, roleIds, deptIds=None):
     return http_lib.http(args)
 
 def deleteAdmin(mobile):
+    """
+    删除管理员角色
+    功能角色 - 选择管理员角色 - 删除人员
+    :param mobile:
+    :return:
+    """
     args = {
         'url' : '/entadmin/deleteAdmin',
         'data' : {
@@ -235,6 +264,14 @@ def deleteAdmin(mobile):
     return http_lib.http(args)
 
 def saveOrgRole(roleName, description, modulePermIds):
+    """
+    添加管理员角色
+    功能角色 - 添加 - 角色名称、角色描述、选择管理员权限 - 保存
+    :param roleName:
+    :param description:
+    :param modulePermIds:
+    :return:
+    """
     if config_file.IS_ON_LINE:
         url = "https://admin.jituancaiyun.com/entadmin/saveOrgRole"
     else:

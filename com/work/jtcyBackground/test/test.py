@@ -4,7 +4,5 @@
 
 
 
-li = {"status":200,"msg":"","data":[{"id":0,"name":"企业管理员","metaModuleId":16,"metaModuleName":"entadmin","orgId":"null","description":"管理企业信息","sys":"true"},{"id":3,"name":"部门管理员","metaModuleId":16,"metaModuleName":"entadmin","orgId":"null","description":"独立管理某个部门的通讯录信息或者应用","sys":"true"},{"id":5,"name":"企业创建人","metaModuleId":16,"metaModuleName":"entadmin","orgId":"null","description":"管理后台的大管家。拥有管理后台的所有权限，如：分配其他管理员、管理通讯录信息、管理各个应用等","sys":"true"},{"id":6,"name":"薪资管理员","metaModuleId":16,"metaModuleName":"entadmin","orgId":"null","description":"专门负责某些部门的薪资、签到、审批","sys":"true"},{"id":7,"name":"考勤管理员","metaModuleId":16,"metaModuleName":"entadmin","orgId":"null","description":"专门负责某些部门的通讯录信息或者考勤","sys":"true"},{"id":9,"name":"财务管理员","metaModuleId":16,"metaModuleName":"entadmin","orgId":"null","description":"管理增值服务","sys":"true"},{"id":10,"name":"工作圈管理员","metaModuleId":16,"metaModuleName":"entadmin","orgId":"null","description":" 只负责工作圈事务","sys":"true"},{"id":389,"name":" 通讯录个性化字段","metaModuleId":16,"metaModuleName":"entadmin","orgId":"571710020","description":" 通讯录个性化字段","sys":"false"},{"id":390,"name":"企业通讯录共享设置","metaModuleId":16,"metaModuleName":"entadmin","orgId":"571710020","description":"企业通讯录共享设置","sys":"false"},{"id":391,"name":"安全设置","metaModuleId":16,"metaModuleName":"entadmin","orgId":"571710020","description":"安全设置","sys":"false"},{"id":393,"name":"企业名称","metaModuleId":16,"metaModuleName":"entadmin","orgId":"571710020","description":"企业名称","sys":"false"},{"id":394,"name":"公告","metaModuleId":16,"metaModuleName":"entadmin","orgId":"571710020","description":"公告","sys":"false"},{"id":395,"name":"员工职级","metaModuleId":16,"metaModuleName":"entadmin","orgId":"571710020","description":"员工职级","sys":"false"}],"count":13,"success":"true"}
-print li['data']
-for i in li['data']:
-    print i['id']
+for i in range(0,4):
+    print i

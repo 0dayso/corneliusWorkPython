@@ -6,6 +6,7 @@ import urllib2
 
 # url1 = "http://www.dawenxue.net/8613/"
 url1 = "http://www.dawenxue.net/55425/" #终极狂少
+# http://www.xiaoshuozu.com/shu/5365/ 铁血军魂李云龙
 
 text1 = "E:\\workspace\\corneliusWorkPython\\com\\bjj\\reptile\\novel\\wuCuo\\allChapter.txt"
 

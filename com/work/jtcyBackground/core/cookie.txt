@@ -2,9 +2,9 @@
 # http://curl.haxx.se/rfc/cookie_spec.html
 # This is a generated file!  Do not edit.
 
-.jituancaiyun.net	TRUE	/	FALSE	1506601430	_scn	a86a2365Sd063c96eS15ec724fdceSf537
-.jituancaiyun.net	TRUE	/	FALSE	1506601243	timeStamp	1506579643855
-.jituancaiyun.net	TRUE	/	FALSE	1506601243	token	87b30fcc073b80f2a98d0d1654a59abf
+.jituancaiyun.net	TRUE	/	FALSE	1506697867	_scn	a86a2365Sd063c96eS15ecce473dbSb84d
+.jituancaiyun.net	TRUE	/	FALSE	1506697677	timeStamp	1506676077533
+.jituancaiyun.net	TRUE	/	FALSE	1506697677	token	ac9370dfb2e9a419d61fc02398645888
 .jituancaiyun.net	TRUE	/	FALSE		uiapp	%7B%22orgId%22%3A571710020%2C%22orgName%22%3A%22%E9%9B%86%E5%9B%A2%E5%BD%A9%E4%BA%91%E6%B5%8B%E8%AF%95%E4%BC%81%E4%B8%9A020%22%2C%22name%22%3A%2288888%22%2C%22mobile%22%3A%2214088888888%22%2C%22superAdmin%22%3A0%2C%22subOrg%22%3Afalse%2C%22teamOrg%22%3Afalse%2C%22uid%22%3A%22101010012129849%22%7D
-.jituancaiyun.net	TRUE	/	FALSE	1506601243	userId	101010012129849
+.jituancaiyun.net	TRUE	/	FALSE	1506697677	userId	101010012129849
 admin.jituancaiyun.net	FALSE	/	FALSE		userInfo	%7B%22orgId%22%3A571710020%2C%22orgName%22%3A%22%E9%9B%86%E5%9B%A2%E5%BD%A9%E4%BA%91%E6%B5%8B%E8%AF%95%E4%BC%81%E4%B8%9A020%22%2C%22name%22%3A%2288888%22%2C%22mobile%22%3A%2214088888888%22%2C%22superAdmin%22%3A0%2C%22subOrg%22%3Afalse%2C%22teamOrg%22%3Afalse%2C%22uid%22%3A%22101010012129849%22%7D
