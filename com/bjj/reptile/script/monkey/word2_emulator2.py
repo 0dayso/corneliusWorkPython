@@ -6,6 +6,8 @@ import datetime
 
 device = MonkeyRunner.waitForConnection(6, "127.0.0.1:62001")
 waitTime = 2 # sleep时间，2表示sleep 2 * 30 秒的时间
+cityNum = 3 # 几座城市
+times = 1 # 运行几次
 
 def startTime():
     now = datetime.datetime.now()
@@ -25,22 +27,25 @@ def home():
 def takeSnapshot():
     image = device.takeSnapshot()
     image.writeToFile('D:/test/images/shot.png')
-    MonkeyRunner.sleep(2)
+    MonkeyRunner.sleep(3)
 
 def getSubImage2(name, x, y, x1, y1):
     re = MonkeyRunner.loadImageFromFile('D:/test/images/shot.png')
     re = re.getSubImage((x, y, x1 - x, y1 - y))
-    re.writeToFile('D:/test/images/%s.png'%name)
+    re.writeToFile('D:/test/images/%s.png'%name, 'png')
+    sleep(1)
 
 def getSubMenu(x, y, x1, y1):
     re = MonkeyRunner.loadImageFromFile('D:/test/images/shot.png')
     re = re.getSubImage((x, y, x1 - x, y1 - y))
-    re.writeToFile('D:/test/images/sub.png')
+    re.writeToFile('D:/test/images/sub.png', 'png')
+    sleep(1)
 
 def getSubImage1(x, y, x1, y1):
     re = MonkeyRunner.loadImageFromFile('D:/test/images/shot.png')
     re = re.getSubImage((x, y, x1 - x, y1 - y))
-    re.writeToFile('D:/test/images/sub.png')
+    re.writeToFile('D:/test/images/sub.png', 'png')
+    sleep(1)
 
 def getCityList():
     takeSnapshot()
@@ -81,7 +86,7 @@ def getCityIndex(num):
     :param num:
     :return: num
     """
-    for i in range(1, 4):
+    for i in range(1, cityNum + 1):
         image1 = MonkeyRunner.loadImageFromFile('D:/test/images/%s.png'%str(num))
         image2 = MonkeyRunner.loadImageFromFile('D:/test/images/city%s.png'%str(i))
         if image1.sameAs(image2, 0.95):
@@ -164,7 +169,6 @@ def selectCity(num1):
     getCityList()
     num = getCityIndex(num1)
     print "select city " + str(num1) + "; city index " + str(num)
-    print
     if num == 1:
         touchScreen(115, 29)
         sleep(10)
@@ -325,34 +329,47 @@ def city7():
     buildUpgrade(11)
 
 def buildUpgrade(index):
-    num = getMenuIndex()
+    num = 0
+    if index == 0:# city
+        touchScreen(617, 365)
+        num = getMenuIndex()
+    elif index == 1:# nc
+        touchScreen(788, 360)
+        num = getMenuIndex()
+    elif index == 2:#gt
+        touchScreen(769, 438)
+        num = getMenuIndex()
+    elif index == 3:#xj
+        touchScreen(670, 500)
+        num = getMenuIndex()
+    elif index == 4:#sy
+        touchScreen(611, 565)
+        num = getMenuIndex()
+    elif index == 5:#by
+        touchScreen(477, 528)
+        num = getMenuIndex()
+    elif index == 6:#bgc
+        touchScreen(385, 457)
+        num = getMenuIndex()
+    elif index == 7:#jc
+        touchScreen(559, 462)
+        num = getMenuIndex()
+    elif index == 8:#bj
+        touchScreen(449, 352)
+        num = getMenuIndex()
+    elif index == 9:#fy
+        touchScreen(521, 294)
+        num = getMenuIndex()
+    elif index == 10:#fy
+        touchScreen(615, 258)
+        num = getMenuIndex()
+    elif index == 11:#fy
+        touchScreen(734, 285)
+        num = getMenuIndex()
+    elif index == 12:#business
+        touchScreen(833, 564)
+        num = getMenuIndex()
     if num > 0:
-        if index == 0:# city
-            touchScreen(617, 365)
-        elif index == 1:# nc
-            touchScreen(788, 360)
-        elif index == 2:#gt
-            touchScreen(769, 438)
-        elif index == 3:#xj
-            touchScreen(670, 500)
-        elif index == 4:#sy
-            touchScreen(611, 565)
-        elif index == 5:#by
-            touchScreen(477, 528)
-        elif index == 6:#bgc
-            touchScreen(385, 457)
-        elif index == 7:#jc
-            touchScreen(559, 462)
-        elif index == 8:#bj
-            touchScreen(449, 352)
-        elif index == 9:#fy
-            touchScreen(521, 294)
-        elif index == 10:#fy
-            touchScreen(615, 258)
-        elif index == 11:#fy
-            touchScreen(734, 285)
-        elif index == 12:#business
-            touchScreen(833, 564)
         sleep(1)
         menu(num)
         upgradeButton()
@@ -373,7 +390,7 @@ def task():
 
 
 if __name__ == '__main__':
-    ti =20
+    ti = times + 1
     # task()
     # sleep(120 * 60)
     for t in range(1, ti):

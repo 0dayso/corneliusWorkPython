@@ -96,8 +96,8 @@ def upgrade(index, name, chi):
     :return:
     """
     if index == 0:
-        # if chi % 2 == 0 or chi == 0:
-        #     upgradeCity()
+        if chi % 3 == 0 or chi == 0:
+            upgradeCity()
         upgradeCity()
     elif index == 1:
         device.touch(788, 360,MonkeyDevice.DOWN_AND_UP)
@@ -207,17 +207,17 @@ def city1(chi):
     upgrade(1, "nc", chi)
     upgrade(6, "gc", chi)
     upgrade(5, "by", chi)
-    upgrade(7, "jc", chi)
-    upgrade(8, "bj", chi)
-    upgrade(12, "business", chi)
-    upgrade(9, "fy", chi)
-    upgrade(10, "fy", chi)
-    upgrade(11, "fy", chi)
+    # upgrade(7, "jc", chi)
+    # upgrade(8, "bj", chi)
+    # upgrade(12, "business", chi)
+    # upgrade(9, "fy", chi)
+    # upgrade(10, "fy", chi)
+    # upgrade(11, "fy", chi)
 
 
 def city2(chi):
-    selectCity(3)
-    upgrade(0, "", chi)
+    selectCity(2)
+    # upgrade(0, "", chi)
     # upgrade(4, "sy", chi)
     upgrade(3, "xj", chi)
     upgrade(2, "t", chi)
@@ -227,13 +227,13 @@ def city2(chi):
     # upgrade(7, "jc", chi)
     # upgrade(8, "bj", chi)
     upgrade(12, "business", chi)
-    upgrade(9, "fy", chi)
-    upgrade(10, "fy", chi)
+    # upgrade(9, "fy", chi)
+    # upgrade(10, "fy", chi)
     # upgrade(11, "fy", chi)
 
 
 def city3(chi):
-    selectCity(2)
+    selectCity(3)
     upgrade(0, "", chi)
     upgrade(4, "sy", chi)
     upgrade(3, "xj", chi)
@@ -322,7 +322,7 @@ def task(chi):
     startTime()
     # city1(chi)
     city2(chi)
-    city3(chi)
+    # city3(chi)
     # city4(chi)
     # city5(chi)
     # city6(chi)
@@ -332,9 +332,9 @@ def task(chi):
 
 
 if __name__ == '__main__':
-    ti =20
+    ti =5
     # task()
-    # sleep(120 * 60)
+    # sleep(60 * 60)
     for t in range(1, ti):
         print "============start " + str(t) + " time============"
         # if t == 2:
@@ -345,7 +345,7 @@ if __name__ == '__main__':
         else:
             print "============ END ============"
             # if ti < 10:
-            sleep(30 * 60)
+            sleep(10 * 60)
             # elif ti < 20:
             #     sleep(20 * 60)
             # else:
